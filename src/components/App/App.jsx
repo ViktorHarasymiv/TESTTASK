@@ -6,8 +6,7 @@ import Main from "../Main/main";
 export default function App() {
   return (
     <React.Fragment>
-      <Header />
-      <Main></Main>
+     <h1>hello</h1>
     </React.Fragment>
   );
 }
