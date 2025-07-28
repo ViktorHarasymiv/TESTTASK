@@ -1,0 +1,37 @@
+// Base style setup for project
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  font-family: var(--font-family);
+  font-size: 1em;
+  line-height: var(--line-height);
+
+  color: var(--black-87);
+
+  background-color: var(--background);
+}
+
+main {
+  flex-grow: 1;
+}
+
+h2,
+h3 {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 400;
+}
+
+section:not(:last-child) {
+  margin-bottom: 140px;
+}
+
+section:last-child {
+  margin-bottom: 100px;
+}
+
+.uppercase_text {
+  text-transform: uppercase;
+}

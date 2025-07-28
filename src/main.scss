@@ -1,0 +1,23 @@
+// Utils
+@use "./styles/utils/variables";
+@use "./styles/utils/mixins";
+@use "./styles/utils/media";
+
+// Base styles
+@use "./styles/base/reset";
+@use "./styles//base/fonts";
+@use "./styles/base/typography";
+@use "./styles/base/setup";
+
+// Layout parts
+@use "./styles/layout/header.scss";
+@use "./styles/layout/hero.scss";
+@use "./styles/layout/users.scss";
+@use "./styles/layout/form";
+
+// Component styles
+@use "./styles/components/heading.scss";
+@use "./styles/components/button.scss";
+@use "./styles/components/full-text-content.scss";
+@use "./styles/components/custom-input.scss";
+@use "./styles/components/custom-radio_button.scss";

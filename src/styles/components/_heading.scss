@@ -1,0 +1,14 @@
+.heading__title,
+.heading__section {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: var(--accent-line-height);
+
+  color: inherit;
+
+  text-align: center;
+}
+
+.heading__section {
+  margin-bottom: 50px;
+}

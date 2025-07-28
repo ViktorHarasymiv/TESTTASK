@@ -1,0 +1,52 @@
+{
+  "name": "testtask",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "Viktor Harasymiv <victorharasymiv97@gmail.com>",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tanstack/react-query": "^5.83.0",
+    "axios": "^1.11.0",
+    "formik": "^2.4.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.7.1",
+    "react-spinners": "^0.17.0",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/eslint-parser": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "@eslint/js": "^9.32.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^10.0.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-webpack-plugin": "^5.0.2",
+    "file-loader": "^6.2.0",
+    "globals": "^16.3.0",
+    "html-webpack-plugin": "^5.6.3",
+    "prettier": "^3.6.2",
+    "react-refresh": "^0.17.0",
+    "sass": "^1.89.2",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.100.2",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}

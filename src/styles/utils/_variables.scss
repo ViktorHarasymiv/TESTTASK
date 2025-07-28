@@ -1,0 +1,34 @@
+:root {
+  // container variable
+
+  --padding-sm: 16px;
+
+  --padding-md: 32px;
+
+  --padding-lg: 60px;
+
+  // root config
+
+  --font-family: "Nunito";
+  --line-height: 1.62;
+  --accent-line-height: 1;
+
+  // colors
+
+  --background: #f8f8f8;
+  --label-color: #7e7e7e;
+
+  --white: #fff;
+  --radio-color: d0cfcf;
+  --button-color: #f4e041;
+  --accent-color: #ffe302;
+  --disabled: #b4b4b4;
+  --error: #cb3d40;
+  --secondary: #00bdd3;
+
+  --black-87: rgba(0, 0, 0, 0.87);
+
+  // animation
+
+  --transition-duration: 0.2s;
+}
