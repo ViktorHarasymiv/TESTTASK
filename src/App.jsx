@@ -10,8 +10,6 @@ import App from "./components/App/App.jsx";
 
 import "./main.scss";
 
-eruda.init();
-
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
