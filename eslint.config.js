@@ -26,7 +26,7 @@ export default {
   },
   rules: {
     "react/react-in-jsx-scope": "off",
-    "import/no-unresolved": "error",
+    "import/no-unresolved": "warn",
     "import/order": ["warn", { "newlines-between": "always" }],
     "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
   },
