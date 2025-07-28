@@ -13,7 +13,7 @@ import { handleScroll } from "../../scripts/scrollByPath";
 
 // MEDIA
 
-import Logo from "/public/assets/icons/logo.png";
+import Logo from "../../../public/images/icons/logo.png";
 
 // BODY
 

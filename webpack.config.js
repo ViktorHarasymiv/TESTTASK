@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
@@ -23,14 +24,9 @@ module.exports = {
           },
         },
       },
-
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [
-          {
-            loader: "file-loader",
-          },
-        ],
+        type: "asset/resource",
       },
       {
         test: /\.css$/i,
@@ -49,10 +45,23 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+      filename: "index.html",
     }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "public",
+          to: ".",
+          globOptions: {
+            ignore: ["**/index.html"], // ← ось ця стрічка вирішує конфлікт
+          },
+        },
+      ],
+    }),
+
     new ESLintPlugin({
       extensions: ["js", "jsx"],
-    })
+    }),
   ],
   devServer: {
     static: [

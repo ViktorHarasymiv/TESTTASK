@@ -5,9 +5,9 @@ import Main from "../Main/Main";
 
 export default function App() {
   return (
-    <React.Fragment>
-     <Header />
+    <>
+      <Header />
       <Main></Main>
-    </React.Fragment>
+    </>
   );
 }

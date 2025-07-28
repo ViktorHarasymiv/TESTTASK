@@ -6,19 +6,19 @@ export default function ResponseBackground() {
       {/* Зображення для ретини (2x) */}
       <source
         media="(min-width: 1168px)"
-        srcSet="/assets/images/hero/xl.jpg 1x, /assets/images/hero/retina/xl@2x.jpg 2x"
+        srcSet="/images/xl.jpg 1x, /images/xl@2x.jpg 2x"
       />
       <source
         media="(min-width: 1024px)"
-        srcSet="/assets/images/hero/lg.jpg 1x, /assets/images/hero/retina/lg@2x.jpg 2x"
+        srcSet="/images/lg.jpg 1x, /images/lg@2x.jpg 2x"
       />
       <source
         media="(min-width: 768px)"
-        srcSet="/assets/images/hero/md.jpg 1x, /assets/images/hero/retina/md@2x.jpg 2x"
+        srcSet="/images/md.jpg 1x, /images/md@2x.jpg 2x"
       />
       {/* Fallback */}
       <img
-        src="/assets/images/hero/sm.jpg"
+        src="/images/sm.jpg"
         alt="Ukraine symbol image"
         className="hero__background"
         loading="lazy"
