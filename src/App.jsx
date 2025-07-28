@@ -8,7 +8,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import App from "./components/App/App.jsx";
 
-// import "./main.scss";
+import "./main.scss";
+
+eruda.init();
 
 const queryClient = new QueryClient();
 
