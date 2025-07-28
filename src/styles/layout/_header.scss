@@ -1,0 +1,28 @@
+.h1 {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.header {
+  &__wrapper {
+    padding-block: 13px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__buttons--wrapper {
+    display: inherit;
+    gap: 10px;
+  }
+  &__logo-link {
+    display: inherit;
+    align-items: center;
+  }
+}

@@ -1,0 +1,20 @@
+.button {
+  max-width: 120px;
+  height: 34px;
+
+  color: var(--black-87);
+
+  background-color: var(--button-color);
+  border-radius: 80px;
+
+  transition-duration: var(--transition-duration);
+
+  text-align: center;
+  &:hover {
+    background-color: var(--accent-color);
+  }
+  &:disabled {
+    background-color: var(--disabled);
+    color: var(--white);
+  }
+}

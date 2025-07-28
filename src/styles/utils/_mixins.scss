@@ -1,0 +1,9 @@
+@mixin hidden-text {
+  text-align: center;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  -webkit-line-clamp: 1;
+}
