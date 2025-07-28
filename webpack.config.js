@@ -1,13 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.jsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    publicPath: "/",
     clean: true,
   },
   module: {
@@ -51,8 +51,7 @@ module.exports = {
     }),
     new ESLintPlugin({
       extensions: ["js", "jsx"],
-    }),
-    new ReactRefreshWebpackPlugin(),
+    })
   ],
   devServer: {
     static: [
