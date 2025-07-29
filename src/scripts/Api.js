@@ -36,14 +36,14 @@ export const GET_POSITIONS = async () => {
 };
 
 // POST
+const tokenResponse = await axios.post("/token");
+
+const TOKEN = tokenResponse.data.token;
+
+console.log(TOKEN);
 
 export const POST_USER = async (FORM_DATA) => {
   try {
-    const tokenResponse = await axios.get("/token");
-    const TOKEN = tokenResponse.data.token;
-
-    console.log(TOKEN);
-
     const response = await axios.post("/users", FORM_DATA, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
