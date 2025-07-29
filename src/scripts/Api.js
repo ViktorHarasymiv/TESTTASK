@@ -46,8 +46,9 @@ export const POST_USER = async (FORM_DATA) => {
   try {
     const response = await axios.post("/users", FORM_DATA, {
       headers: {
-        Authorization: `Bearer ${TOKEN}`,
-        "Content-Type": "multipart/form-data",
+        "accept": "application/json",
+        "Token": TOKEN,
+        ...FORM_DATA.getHeaders?.()
       },
     });
     return response.data;
