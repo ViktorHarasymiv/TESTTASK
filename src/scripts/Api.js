@@ -44,17 +44,19 @@ export const POST_USER = async (FORM_DATA) => {
 
     console.log(TOKEN);
 
-    const CONFIG = {
+    const response = await axios.post("/users", FORM_DATA, {
       headers: {
         Authorization: `Bearer ${TOKEN}`,
         "Content-Type": "multipart/form-data",
       },
-    };
-
-    const response = await axios.post("/users", FORM_DATA, CONFIG);
+    });
     return response.data;
   } catch (error) {
-    alert("Error POST users:", error.message);
+    console.log(
+      "Error POST users:",
+      error.response?.status,
+      error.response?.data
+    );
     return [];
   }
 };

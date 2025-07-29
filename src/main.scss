@@ -14,6 +14,7 @@
 @use "./styles/layout/hero.scss";
 @use "./styles/layout/users.scss";
 @use "./styles/layout/form";
+@use "./styles/layout/footer";
 
 // Component styles
 @use "./styles/components/heading.scss";
@@ -21,3 +22,4 @@
 @use "./styles/components/full-text-content.scss";
 @use "./styles/components/custom-input.scss";
 @use "./styles/components/custom-radio_button.scss";
+@use "./styles/components/success";

@@ -7,6 +7,9 @@ import Button from "../Button/Button";
 
 import { useUser } from "../../UserContext";
 import FullTextContent from "../FullTextContent/FullTextContent";
+
+// API
+
 import { POST_USER } from "../../scripts/Api";
 
 // VALIDATION SCHEMA
@@ -72,7 +75,7 @@ const validationSchema = Yup.object().shape({
 
 export default function UserForm() {
   // CONTEXT
-  const { positions } = useUser();
+  const { positions, setIsSend } = useUser();
 
   // FORM INITIAL VALUE
 
@@ -106,11 +109,11 @@ export default function UserForm() {
             formData.forEach((value, key) => {
               console.log(`${key}:`, value);
             });
-
             await POST_USER(formData);
           } catch (error) {
-            alert("Something went wrong");
+            console.log(error.message);
           } finally {
+            setIsSend(true);
             setSubmitting(false);
             resetForm();
           }

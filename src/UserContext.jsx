@@ -19,6 +19,7 @@ export const UserProvider = ({ children }) => {
 
   const [page, setPage] = useState(1);
   const [positions, setPositions] = useState([]);
+  const [isSend, setIsSend] = useState(false);
 
   // QUERY
 
@@ -68,6 +69,8 @@ export const UserProvider = ({ children }) => {
         isLoading,
         error,
         positions,
+        isSend,
+        setIsSend,
       }}
     >
       {children}

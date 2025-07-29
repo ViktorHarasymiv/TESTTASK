@@ -1,11 +1,9 @@
 @use "../utils/index" as *;
 
 .full__text-content {
-  overflow: hidden;
   z-index: 99999;
 
   max-width: 320px;
-  width: 100%;
 
   font-size: 10px;
   pointer-events: none;
@@ -24,6 +22,7 @@
   color: var(--white);
 
   text-align: center;
+  text-wrap: nowrap;
 
   @include respond(md) {
     font-size: 13px;
