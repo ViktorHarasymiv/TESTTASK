@@ -6,7 +6,7 @@ import { useQuery, keepPreviousData } from "@tanstack/react-query";
 
 // API
 
-import { GET_USERS, GET_POSITIONS, POST_TOKEN } from "../src/scripts/userApi";
+import { GET_USERS, GET_POSITIONS, POST_TOKEN } from "./scripts/Api";
 
 // CONTEXT
 
@@ -38,11 +38,6 @@ export const UserProvider = ({ children }) => {
     setPositions(positions);
   };
 
-  const TOKEN = async () => {
-    const token = await POST_TOKEN();
-    console.log(token);
-  };
-
   // EFFECT
 
   // SCROLL TO TOP
@@ -59,7 +54,6 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     fetchPositions();
-    TOKEN();
   }, []);
 
   // BODY

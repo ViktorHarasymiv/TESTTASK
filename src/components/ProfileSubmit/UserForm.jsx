@@ -7,7 +7,7 @@ import Button from "../Button/Button";
 
 import { useUser } from "../../UserContext";
 import FullTextContent from "../FullTextContent/FullTextContent";
-import { POST_USER } from "../../scripts/userApi";
+import { POST_USER } from "../../scripts/Api";
 
 // VALIDATION SCHEMA
 
@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
     )
     .required("Please enter your phone"),
 
-  position: Yup.string().required("Please enter your position"),
+  position_id: Yup.number().required("Please enter your position"),
 
   photo: Yup.mixed()
     .test(
@@ -80,7 +80,7 @@ export default function UserForm() {
     name: "",
     email: "",
     phone: "",
-    position: positions[0]?.name || "",
+    position_id: 1,
     photo: null,
     acceptConfig: false,
   };
@@ -95,10 +95,11 @@ export default function UserForm() {
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           const formData = new FormData();
+
           formData.append("name", values.name);
           formData.append("email", values.email);
           formData.append("phone", values.phone);
-          formData.append("position", values.position);
+          formData.append("position_id", values.position_id);
           formData.append("photo", values.photo);
 
           try {
@@ -106,10 +107,9 @@ export default function UserForm() {
               console.log(`${key}:`, value);
             });
 
-            const result = await POST_USER(formData);
-            console.log("Success:", result);
+            await POST_USER(formData);
           } catch (error) {
-            alert("Something went wrong 😥");
+            alert("Something went wrong");
           } finally {
             setSubmitting(false);
             resetForm();
@@ -129,13 +129,14 @@ export default function UserForm() {
         }) => (
           <form onSubmit={handleSubmit} className="form__wrapper">
             {/* NAME */}
-            <label htmlFor="name" className="custom__input_label _name">
+            <label className="custom__input_label _name">
               <Field
                 type="name"
                 name="name"
                 onChange={handleChange}
                 className="custom__input"
                 placeholder={""}
+                autoComplete="name"
                 style={{
                   border:
                     errors.name && touched.name ? `2px solid var(--error)` : "",
@@ -158,12 +159,13 @@ export default function UserForm() {
             </label>
 
             {/* EMAIL */}
-            <label htmlFor="email" className="custom__input_label _email">
+            <label className="custom__input_label _email">
               <Field
                 type="email"
                 name="email"
                 onChange={handleChange}
                 className="custom__input"
+                autoComplete="email"
                 placeholder={""}
                 style={{
                   border:
@@ -189,13 +191,14 @@ export default function UserForm() {
             </label>
 
             {/* PHONE */}
-            <label htmlFor="phone" className="custom__input_label _phone">
+            <label className="custom__input_label _phone">
               <Field
                 type="tel"
                 name="phone"
                 onChange={handleChange}
                 placeholder={""}
                 className="custom__input"
+                autoComplete="phone"
                 style={{
                   border:
                     errors.phone && touched.phone
@@ -229,19 +232,14 @@ export default function UserForm() {
                   <label key={id} className="custom__input_radio--label">
                     <Field
                       type="radio"
-                      name="position"
-                      value={name}
-                      checked={values?.position === name}
+                      name="position_id"
+                      value={Number(id)}
                       onChange={handleChange}
+                      checked={Number(values.position_id) === Number(id)}
                       className="radio__input"
                     />
                     <span className="radio__custom"></span>
                     {name}
-                    <ErrorMessage
-                      name="position"
-                      component="span"
-                      className="custom__input_error"
-                    />
                   </label>
                 );
               })}
@@ -255,10 +253,7 @@ export default function UserForm() {
 
                   return (
                     <React.Fragment>
-                      <label
-                        htmlFor="photo"
-                        className="custom__file_label _file"
-                      >
+                      <label className="custom__file_label _file">
                         <input
                           type="file"
                           name="photo"
