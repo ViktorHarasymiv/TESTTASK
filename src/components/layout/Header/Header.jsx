@@ -14,7 +14,7 @@ import { handleScroll } from "../../../scripts/utils";
 
 // MEDIA
 
-import Logo from "../../../../public/images/icons/logo.png";
+import Logo from "../../../../public/images/icons/Logo.png";
 
 // BODY
 
