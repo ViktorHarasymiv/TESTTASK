@@ -307,7 +307,7 @@ export default function CreateForm() {
                             border: handleErorr ? "none" : undefined,
                             borderRight: handleErorr
                               ? "2px solid var(--error)"
-                              : "var(--label-color)",
+                              : "var(black-87)",
                           }}
                         >
                           Upload

@@ -33,16 +33,11 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: /\.scss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "style-loader", // Вставляє стилі в DOM
-          "css-loader", // Розпізнає @import і url()
-          "sass-loader", // Компілює Sass в CSS
-        ],
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },
