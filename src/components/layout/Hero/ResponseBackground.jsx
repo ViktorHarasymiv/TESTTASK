@@ -21,7 +21,6 @@ export default function ResponseBackground() {
         src="/images/sm.jpg"
         alt="Ukraine symbol image"
         className="hero__background"
-        loading="lazy"
       />
     </picture>
   );

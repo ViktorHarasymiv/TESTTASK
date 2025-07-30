@@ -30,7 +30,7 @@ export default function Header() {
     <header className="header">
       <div className="header__wrapper container">
         <Link to="/" className="header__logo-link">
-          <img src={Logo} alt="Header logo icon" />
+          <img src={Logo} alt="Header logo icon" width={104} height={26} />
         </Link>
         <div className="header__buttons--wrapper">
           {variables.map((button, i) => (
