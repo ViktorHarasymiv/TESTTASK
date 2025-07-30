@@ -4,13 +4,13 @@ import React from "react";
 
 // COMPONENT
 
-import Heading from "../Heading/Heading";
+import Heading from "../../ui/Heading/Heading";
 import ResponseBackground from "./ResponseBackground";
-import Button from "../Button/Button";
+import Button from "../../ui/Button/Button";
 
 // FUNCTION
 
-import { handleScroll } from "../../scripts/scrollByPath";
+import { handleScroll } from "../../../scripts/utils";
 
 // BODY
 
@@ -20,7 +20,7 @@ export default function Hero() {
   const variables = [{ label: "Sign up", pathId: "profile" }];
 
   return (
-    <section id="hero__section" className="hero">
+    <section id="hero " className="hero">
       <ResponseBackground />
       <div className="hero__wrapper">
         <Heading>Test assignment for front-end developer</Heading>

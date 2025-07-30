@@ -6,7 +6,7 @@ import { useQuery, keepPreviousData } from "@tanstack/react-query";
 
 // API
 
-import { GET_USERS, GET_POSITIONS, POST_TOKEN } from "./scripts/Api";
+import { GET_USERS, GET_POSITIONS } from "./scripts/Api";
 
 // CONTEXT
 
@@ -16,61 +16,70 @@ export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
   // STATE
+  const [showModal, setShowModal] = useState(false);
 
   const [page, setPage] = useState(1);
+  const [contactData, setContactData] = useState([]);
   const [positions, setPositions] = useState([]);
   const [isSend, setIsSend] = useState(false);
 
   // QUERY
 
-  const { data, error, isLoading, isError } = useQuery({
-    queryKey: ["user", page],
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["user", page, isSend],
     queryFn: () => GET_USERS(page),
     placeholderData: keepPreviousData,
   });
 
-  // CONSTANT
+  // SET CONTACTS DATA
 
-  const usersData = data;
-  const total_pages = data?.total_pages ?? 1;
+  useEffect(() => {
+    if (data?.users) {
+      if (page > 1) {
+        setContactData((prevUsers) => [...prevUsers, ...data.users]);
+      } else setContactData(data.users);
+    }
+  }, [data]);
 
-  const fetchPositions = async () => {
+  // GET / SET DATA POSITION
+
+  useEffect(() => {
+    POSITION_DATA();
+  }, []);
+
+  const POSITION_DATA = async () => {
     const positions = await GET_POSITIONS();
     setPositions(positions);
   };
 
-  // EFFECT
+  // PAGE
 
-  // SCROLL TO TOP
+  const total_pages = data?.total_pages ?? 1;
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 80);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  // FETCH
+  // LOCK BODY
 
   useEffect(() => {
-    fetchPositions();
-  }, []);
+    if (showModal) {
+      document.querySelector("html").classList.add("lock");
+    } else document.querySelector("html").classList.remove("lock");
+  }, [showModal]);
 
   // BODY
 
   return (
     <UserContext.Provider
       value={{
-        usersData,
-        page,
-        total_pages,
-        setPage,
-        isLoading,
-        error,
+        contactData,
         positions,
+        page,
+        setPage,
+        total_pages,
+        isLoading,
+        isError,
         isSend,
         setIsSend,
+        showModal,
+        setShowModal,
       }}
     >
       {children}

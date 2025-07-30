@@ -1,15 +1,21 @@
+// SETUP
+
 import React from "react";
 
-import Header from "../Header/Header";
+// LAYOUT
+
+import Header from "../layout/Header/Header";
 import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
+import Footer from "../layout/Footer/Footer";
+
+// BODY
 
 export default function App() {
   return (
-    <>
+    <React.Fragment>
       <Header />
-      <Main></Main>
+      <Main />
       <Footer />
-    </>
+    </React.Fragment>
   );
 }

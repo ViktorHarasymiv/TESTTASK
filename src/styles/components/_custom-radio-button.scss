@@ -1,4 +1,4 @@
-@use "../utils/index" as *;
+@use "../utils/helpers" as *;
 
 // CUSTOM RADIO GROUP
 
@@ -22,6 +22,15 @@
 
 .radio__label:hover .radio__custom {
   border-color: var(--secondary);
+}
+
+.custom__input_radio--label {
+  cursor: pointer;
+  transition-duration: var(--transition-duration);
+}
+
+.custom__input_radio--label:hover {
+  transform: scale(1.02);
 }
 
 .radio__input:checked + .radio__custom {

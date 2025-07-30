@@ -1,19 +1,20 @@
 // SETUP
 
 import React from "react";
+
 import { Link } from "react-router-dom";
 
 // COMPONENT
 
-import Button from "../Button/Button";
+import Button from "../../ui/Button/Button";
 
 // FUNCTION
 
-import { handleScroll } from "../../scripts/scrollByPath";
+import { handleScroll } from "../../../scripts/utils";
 
 // MEDIA
 
-import Logo from "../../../public/images/icons/logo.png";
+import Logo from "../../../../public/images/icons/logo.png";
 
 // BODY
 

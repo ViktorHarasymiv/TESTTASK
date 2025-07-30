@@ -1,20 +1,30 @@
+// SETUP
+
 import React from "react";
 
-import Hero from "../Hero/Hero";
-import Users from "../Users/Users";
-import ProfileSubmit from "../ProfileSubmit/ProfileSubmit";
-import Success from "../Success/Success";
+// COMPONENTS
+
+import Hero from "../layout/Hero/Hero";
+import Contacts from "../layout/Contacts/Contacts";
+import CreateProfile from "../layout/CreateProfile/CreateProfile";
+import Success from "../layout/Success/Success";
+
+// CONTEXT
 
 import { useUser } from "../../UserContext";
 
+// BODY
+
 export default function Main() {
-  // CONTEXT
+  // CONTEXT DATA
+
   const { isSend } = useUser();
+
   return (
     <main>
-      <Hero></Hero>
-      <Users></Users>
-      {isSend ? <Success /> : <ProfileSubmit />}
+      <Hero />
+      <Contacts />
+      {isSend ? <Success /> : <CreateProfile />}
     </main>
   );
 }

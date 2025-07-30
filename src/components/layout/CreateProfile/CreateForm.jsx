@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import { Formik, Form, ErrorMessage, Field } from "formik";
+import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
-import Button from "../Button/Button";
+import Button from "../../ui/Button/Button";
 
 // CONTEXT
 
-import { useUser } from "../../UserContext";
-import FullTextContent from "../FullTextContent/FullTextContent";
+import { useUser } from "../../../UserContext";
+
+// COMPONENT
+
+import FullTextContent from "../../ui/HoverTextPreview/HoverTextPreview";
 
 // API
 
-import { POST_USER } from "../../scripts/Api";
+import { POST_USER } from "../../../scripts/Api";
+import Modal from "../../ui/Modal/Modal";
 
 // VALIDATION SCHEMA
 
@@ -29,10 +33,7 @@ const validationSchema = Yup.object().shape({
     .required("Please enter your email"),
 
   phone: Yup.string()
-    .matches(
-      /^\+380\d{9}$/,
-      "The phone number must be in the format  +380XXXXXXXXX"
-    )
+    .matches(/^\+380\d{9}$/, "+38 (XXX) XXX - XX - XX")
     .required("Please enter your phone"),
 
   position_id: Yup.number().required("Please enter your position"),
@@ -45,8 +46,8 @@ const validationSchema = Yup.object().shape({
     )
     .test(
       "fileFormat",
-      "Unsupported file format. Allowed: JPEG, PNG",
-      (value) => value && ["image/jpeg", "image/png"].includes(value.type)
+      "Unsupported file format. Allowed: JPEG, JPG",
+      (value) => value && ["image/jpeg"].includes(value.type)
     )
     .test(
       "fileSize",
@@ -55,7 +56,7 @@ const validationSchema = Yup.object().shape({
     )
     .test(
       "imageDimensions",
-      "Мінімальна роздільна здатність: 70x70px",
+      "The minimum image resolution required is 70x70 pixels.",
       (value) =>
         new Promise((resolve) => {
           if (!value) return resolve(false);
@@ -73,9 +74,14 @@ const validationSchema = Yup.object().shape({
     .required("Please upload your photo"),
 });
 
-export default function UserForm() {
+export default function CreateForm() {
+  // STATE
+  const [handleTouched, setHandleTouched] = useState(false);
+  const [statusMessage, setStatusMessage] = useState(null);
+
   // CONTEXT
-  const { positions, setIsSend } = useUser();
+
+  const { positions, setIsSend, setPage, showModal, setShowModal } = useUser();
 
   // FORM INITIAL VALUE
 
@@ -106,16 +112,16 @@ export default function UserForm() {
           formData.append("photo", values.photo);
 
           try {
-            formData.forEach((value, key) => {
-              console.log(`${key}:`, value);
-            });
-            await POST_USER(formData);
+            const response = await POST_USER(formData);
+            setIsSend(true);
+            setPage(1);
+            resetForm();
           } catch (error) {
             console.log(error.message);
+            setStatusMessage(error.message);
+            setShowModal(true);
           } finally {
-            setIsSend(true);
             setSubmitting(false);
-            resetForm();
           }
         }}
       >
@@ -128,17 +134,16 @@ export default function UserForm() {
           handleChange,
           handleSubmit,
           isSubmitting,
-          /* and other goodies */
         }) => (
           <form onSubmit={handleSubmit} className="form__wrapper">
             {/* NAME */}
             <label className="custom__input_label _name">
               <Field
-                type="name"
+                type="text"
                 name="name"
                 onChange={handleChange}
                 className="custom__input"
-                placeholder={""}
+                placeholder={"Your name"}
                 autoComplete="name"
                 style={{
                   border:
@@ -169,7 +174,7 @@ export default function UserForm() {
                 onChange={handleChange}
                 className="custom__input"
                 autoComplete="email"
-                placeholder={""}
+                placeholder={"Email"}
                 style={{
                   border:
                     errors.email && touched.email
@@ -199,7 +204,7 @@ export default function UserForm() {
                 type="tel"
                 name="phone"
                 onChange={handleChange}
-                placeholder={""}
+                placeholder={"Phone"}
                 className="custom__input"
                 autoComplete="phone"
                 style={{
@@ -251,12 +256,16 @@ export default function UserForm() {
             {/* PHOTO */}
             <div className="custom__file">
               <Field name="photo">
-                {({ form: { errors, touched, values, setFieldValue } }) => {
-                  const hasError = !errors.photo && touched.photo;
+                {({ form: { errors, values, setFieldValue } }) => {
+                  const handleErorr = errors.photo && handleTouched;
 
                   return (
                     <React.Fragment>
-                      <label className="custom__file_label _file">
+                      {/* INVISIBLE FUNCTIONAL SYSTEM */}
+                      <label
+                        htmlFor="photo"
+                        className="custom__file_label _file"
+                      >
                         <input
                           type="file"
                           name="photo"
@@ -264,22 +273,32 @@ export default function UserForm() {
                             const file = event.currentTarget.files[0];
                             setFieldValue("photo", file);
                           }}
+                          onFocus={() => {
+                            if (errors.photo) {
+                              setHandleTouched(true);
+                            } else return;
+                          }}
+                          onBlur={() => {
+                            if (errors.photo || (errors.photo && !values.photo))
+                              setHandleTouched(true);
+                            else setHandleTouched(false);
+                          }}
                           className="custom__input"
                         />
                       </label>
-
+                      {/* VISIBLE UI SYSTEM */}
                       <div
                         className="custom__file_input"
                         style={{
-                          border: hasError ? "2px solid var(--error)" : "",
+                          border: handleErorr ? "2px solid var(--error)" : "",
                         }}
                       >
                         <button
                           type="button"
                           className="custom__file_upload"
                           style={{
-                            border: hasError ? "none" : undefined,
-                            borderRight: hasError
+                            border: handleErorr ? "none" : undefined,
+                            borderRight: handleErorr
                               ? "2px solid var(--error)"
                               : undefined,
                           }}
@@ -301,7 +320,8 @@ export default function UserForm() {
                           />
                         )}
                       </div>
-                      {hasError && (
+                      {/* ERROR */}
+                      {handleErorr && (
                         <span className="custom__input_error">
                           {errors.photo}
                         </span>
@@ -323,6 +343,19 @@ export default function UserForm() {
           </form>
         )}
       </Formik>
+      {/* MODAL */}
+      {showModal && (
+        <Modal>
+          <h3 className="error_message">{statusMessage}</h3>
+          <Button
+            type={"button"}
+            handleClick={() => setShowModal(false)}
+            size={100}
+          >
+            Close
+          </Button>
+        </Modal>
+      )}
     </div>
   );
 }

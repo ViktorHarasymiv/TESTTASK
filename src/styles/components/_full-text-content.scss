@@ -1,18 +1,17 @@
-@use "../utils/index" as *;
+@use "../utils/helpers" as *;
 
 .full__text-content {
+  overflow: auto;
   z-index: 99999;
 
-  max-width: 320px;
+  max-width: 240px;
 
   font-size: 10px;
   pointer-events: none;
   position: absolute;
 
-  left: 55%;
-  top: 50px;
-
-  transform: translateX(-50%);
+  left: 0;
+  top: 100%;
 
   border-radius: 4px;
   padding: 3px 16px;
@@ -22,16 +21,16 @@
   color: var(--white);
 
   text-align: center;
-  text-wrap: nowrap;
+  text-wrap: wrap;
 
   @include respond(md) {
     font-size: 13px;
-    transform: translateX(-50%);
-
+    left: 15%;
     max-width: 620px;
+
+    text-wrap: nowrap;
   }
   @include respond(lg) {
     font-size: 1em;
-    transform: translateX(-30%);
   }
 }

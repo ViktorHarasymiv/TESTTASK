@@ -4,18 +4,18 @@ import React from "react";
 
 // IMPORT
 
-import HeadingSection from "../Heading/HeadingSection";
-import UserForm from "./UserForm";
+import HeadingSection from "../../ui/Heading/HeadingSection";
+import CreateForm from "./CreateForm";
 
 // BODY
 
-export default function ProfileSubmit() {
+export default function CreateProfile() {
   return (
     <section id="profile" className="profile__section">
       <HeadingSection>
         Working with <span className="uppercase_text">POST</span> request
       </HeadingSection>
-      <UserForm></UserForm>
+      <CreateForm />
     </section>
   );
 }

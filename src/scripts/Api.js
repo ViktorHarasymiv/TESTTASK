@@ -36,28 +36,26 @@ export const GET_POSITIONS = async () => {
 };
 
 // POST
+
+// TOKEN
+
 const tokenResponse = await axios.post("/token");
 
 const TOKEN = tokenResponse.data.token;
 
-console.log(TOKEN);
+// SET NEW USER
 
 export const POST_USER = async (FORM_DATA) => {
   try {
     const response = await axios.post("/users", FORM_DATA, {
       headers: {
-        "accept": "application/json",
-        "Token": TOKEN,
-        ...FORM_DATA.getHeaders?.()
+        accept: "application/json",
+        Token: TOKEN,
+        ...FORM_DATA.getHeaders?.(),
       },
     });
     return response.data;
   } catch (error) {
-    console.log(
-      "Error POST users:",
-      error.response?.status,
-      error.response?.data
-    );
-    return [];
+    throw new Error(error.response?.data?.message || "Unknown error");
   }
 };

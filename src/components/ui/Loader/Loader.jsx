@@ -1,11 +1,12 @@
-// IMPORT
+// SETUP
 
 import React, { useState } from "react";
+
 // MEDIA
 
 import { ClipLoader } from "react-spinners";
 
-export default function Preloader({ isLoading }) {
+export default function Loader({ isLoading }) {
   let [color, setColor] = useState("#00BDD3");
 
   const override = {

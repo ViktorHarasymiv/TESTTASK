@@ -1,7 +1,14 @@
-import React, { useState } from "react";
-import FullTextContent from "../FullTextContent/FullTextContent";
+// SETUP
 
-export default function UserItem({ user }) {
+import React, { useState } from "react";
+
+// COMPONENT
+
+import HoverTextPreview from "../../ui/HoverTextPreview/HoverTextPreview";
+
+// BODY
+
+export default function ContactCard({ user }) {
   const { email, id, name, phone, photo, position } = user;
 
   const [isHover, setIshover] = useState(false);
@@ -26,7 +33,7 @@ export default function UserItem({ user }) {
         >
           {name}
         </h2>
-        {isHover && <FullTextContent name={name} />}
+        {isHover && <HoverTextPreview name={name} />}
       </div>
       <div className="user__contact-wrapper">
         <h3 className="user__position">{position}</h3>
@@ -39,7 +46,7 @@ export default function UserItem({ user }) {
           >
             {email}
           </a>
-          {isHoverEmail && <FullTextContent name={email} />}
+          {isHoverEmail && <HoverTextPreview name={email} />}
         </div>
         <a href={`tel:${phone}`}>{phone}</a>
       </div>

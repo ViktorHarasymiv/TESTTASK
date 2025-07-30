@@ -5,7 +5,6 @@
 
 // Base styles
 @use "./styles/base/reset";
-@use "./styles//base/fonts";
 @use "./styles/base/typography";
 @use "./styles/base/setup";
 
@@ -21,5 +20,7 @@
 @use "./styles/components/button.scss";
 @use "./styles/components/full-text-content.scss";
 @use "./styles/components/custom-input.scss";
-@use "./styles/components/custom-radio_button.scss";
+@use "./styles/components/custom-radio-button.scss";
 @use "./styles/components/success";
+@use "./styles/components/errors";
+@use "./styles/components/modal";
