@@ -154,7 +154,9 @@ export default function CreateForm() {
                 className="_label-text"
                 style={{
                   color:
-                    errors.name && touched.name ? "var(--error)" : "inherit",
+                    errors.name && touched.name
+                      ? "var(--error)"
+                      : "var(--label-color)",
                 }}
               >
                 Your name
@@ -186,7 +188,9 @@ export default function CreateForm() {
                 className="_label-text"
                 style={{
                   color:
-                    errors.email && touched.email ? "var(--error)" : "inherit",
+                    errors.email && touched.email
+                      ? "var(--error)"
+                      : "var(--label-color)",
                 }}
               >
                 Email
@@ -218,7 +222,9 @@ export default function CreateForm() {
                 className="_label-text"
                 style={{
                   color:
-                    errors.phone && touched.phone ? "var(--error)" : "inherit",
+                    errors.phone && touched.phone
+                      ? "var(--error)"
+                      : "var(--label-color)",
                 }}
               >
                 Phone
@@ -267,6 +273,7 @@ export default function CreateForm() {
                         className="custom__file_label _file"
                       >
                         <input
+                          id="photo"
                           type="file"
                           name="photo"
                           onChange={(event) => {
@@ -300,7 +307,7 @@ export default function CreateForm() {
                             border: handleErorr ? "none" : undefined,
                             borderRight: handleErorr
                               ? "2px solid var(--error)"
-                              : undefined,
+                              : "var(--label-color)",
                           }}
                         >
                           Upload

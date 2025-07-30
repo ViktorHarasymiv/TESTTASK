@@ -2,10 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   devtool: "source-map",
   entry: "./src/index.jsx",
+  mode: "production",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -35,6 +38,7 @@ module.exports = {
       {
         test: /\.scss$/i,
         use: [
+          MiniCssExtractPlugin.loader,
           "style-loader", // Вставляє стилі в DOM
           "css-loader", // Розпізнає @import і url()
           "sass-loader", // Компілює Sass в CSS
@@ -47,6 +51,10 @@ module.exports = {
       template: "./public/index.html",
       filename: "index.html",
     }),
+    new MiniCssExtractPlugin({
+      filename: "styles.min.css", // назва вихідного CSS-файлу
+    }),
+
     new CopyPlugin({
       patterns: [
         {
@@ -77,5 +85,10 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".jsx"],
+  },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(), // мінімізує CSS
+    ],
   },
 };
