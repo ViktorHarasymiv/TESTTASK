@@ -20,6 +20,7 @@ export default function ResponseBackground() {
       <img
         src="/images/sm.jpg"
         alt="Ukraine symbol image"
+        fetchpriority="high"
         className="hero__background"
       />
     </picture>

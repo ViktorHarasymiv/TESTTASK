@@ -25,12 +25,13 @@
 
   @include respond(md) {
     font-size: 13px;
-    left: 15%;
-    max-width: 620px;
-
-    text-wrap: nowrap;
+    left: 5%;
+    max-width: 380px;
   }
+
   @include respond(lg) {
     font-size: 1em;
+
+    max-width: 650px;
   }
 }
