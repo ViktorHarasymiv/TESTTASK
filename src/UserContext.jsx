@@ -48,8 +48,12 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const POSITION_DATA = async () => {
-    const positions = await GET_POSITIONS();
-    setPositions(positions);
+    try {
+      const positions = await GET_POSITIONS();
+      setPositions(positions);
+    } catch (error) {
+      console.error("Failed to fetch positions", error);
+    }
   };
 
   // PAGE
@@ -59,9 +63,7 @@ export const UserProvider = ({ children }) => {
   // LOCK BODY
 
   useEffect(() => {
-    if (showModal) {
-      document.querySelector("html").classList.add("lock");
-    } else document.querySelector("html").classList.remove("lock");
+    document.documentElement.classList.toggle("lock", showModal);
   }, [showModal]);
 
   // BODY

@@ -2,8 +2,8 @@ import React from "react";
 
 export default function ResponseBackground() {
   return (
+    /* Зображення для ретини (2x) */
     <picture>
-      {/* Зображення для ретини (2x) */}
       <source
         media="(min-width: 1168px)"
         srcSet="/images/xl.jpg 1x, /images/xl@2x.jpg 2x"
@@ -20,7 +20,7 @@ export default function ResponseBackground() {
       <img
         src="/images/sm.jpg"
         alt="Ukraine symbol image"
-        fetchpriority="high"
+        fetchPriority="high"
         className="hero__background"
       />
     </picture>
