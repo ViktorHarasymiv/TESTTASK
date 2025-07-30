@@ -9,18 +9,18 @@
 @use "./styles/base/setup";
 
 // Layout parts
-@use "./styles/layout/header.scss";
-@use "./styles/layout/hero.scss";
-@use "./styles/layout/users.scss";
+@use "./styles/layout/header";
+@use "./styles/layout/hero";
+@use "./styles/layout/users";
 @use "./styles/layout/form";
 @use "./styles/layout/footer";
 
 // Component styles
 @use "./styles/components/heading.scss";
 @use "./styles/components/button.scss";
-@use "./styles/components/full-text-content.scss";
-@use "./styles/components/custom-input.scss";
-@use "./styles/components/custom-radio-button.scss";
+@use "./styles/components/hover-text-preview";
+@use "./styles/components/custom-input";
+@use "./styles/components/custom-radio-button";
 @use "./styles/components/success";
 @use "./styles/components/errors";
 @use "./styles/components/modal";

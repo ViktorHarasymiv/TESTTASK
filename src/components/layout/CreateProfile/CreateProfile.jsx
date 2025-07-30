@@ -12,10 +12,12 @@ import CreateForm from "./CreateForm";
 export default function CreateProfile() {
   return (
     <section id="profile" className="profile__section">
-      <HeadingSection>
-        Working with <span className="uppercase_text">POST</span> request
-      </HeadingSection>
-      <CreateForm />
+      <div className="container">
+        <HeadingSection>
+          Working with <span className="uppercase_text">POST</span> request
+        </HeadingSection>
+        <CreateForm />
+      </div>
     </section>
   );
 }

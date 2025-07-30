@@ -1,10 +1,9 @@
 @use "../utils/helpers" as *;
 
 .full__text-content {
-  overflow: hidden;
   z-index: 99999;
 
-  max-width: 240px;
+  max-width: 280px;
 
   font-size: 10px;
   pointer-events: none;
@@ -22,6 +21,9 @@
 
   text-align: center;
   text-wrap: wrap;
+
+  white-space: normal;
+  word-break: break-word;
 
   animation: showContent 0.3s ease;
 

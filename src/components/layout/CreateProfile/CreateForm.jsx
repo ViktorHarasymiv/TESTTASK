@@ -98,7 +98,7 @@ export default function CreateForm() {
   const [isHover, setIshover] = useState(false);
 
   return (
-    <div className="form container">
+    <div className="form">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

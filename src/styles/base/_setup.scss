@@ -13,7 +13,15 @@ body {
 }
 
 main {
+  display: inherit;
+  flex-direction: column;
+  align-items: center;
+
   flex-grow: 1;
+}
+
+section {
+  width: 100%;
 }
 
 section:not(:last-child) {
