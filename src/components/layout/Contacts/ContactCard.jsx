@@ -18,7 +18,7 @@ export default function ContactCard({ user }) {
     <li className="user__tile">
       <figure className="user__avatar">
         <img
-          src={photo ? photo : "/assets/icons/photo-cover.png"}
+          src={photo ? photo : "/images/icons/photo-cover.png"}
           alt={`Фото:${name}`}
           width={70}
           height={70}
